@@ -5,15 +5,19 @@ import { HeaderComponent } from './components/header/header.component';
 import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { PrestationsModule } from '../prestations/prestations.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
     FontAwesomeModule,
-    PrestationsModule,
+    RouterModule,
   ],
-  declarations: [UiComponent, HeaderComponent, NavComponent, FooterComponent],
+  declarations: [
+    UiComponent,
+    HeaderComponent,
+    NavComponent,
+    FooterComponent],
   exports: [UiComponent],
 })
 export class UiModule { }
