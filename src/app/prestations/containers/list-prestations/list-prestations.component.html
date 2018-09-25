@@ -2,32 +2,12 @@
   <table class="table table-hover">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">Type</th>
-        <th scope="col">Client</th>
-        <th scope="col">Nb jours</th>
-        <th scope="col">Tjm HT</th>
-        <th scope="col">Total HT</th>
-        <th scope="col">Total TTC</th>
-        <th scope="col">Action</th>
+        <th *ngFor="let item of table_headers" scope="col">{{ item }}</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let prest of prestations">
-        <th>{{ prest.typePresta }}</th>
-        <td>{{ prest.client }}</td>
-        <td>{{ prest.nbJours }}</td>
-        <td>{{ prest.tjmHT | currency:'EUR' }}</td>
-        <td>{{ prest | total:'HT' | currency:'EUR' }}</td>
-        <td>{{ prest | total:'TTC' | currency:'EUR' }}</td>
-        <td>
-          <select>
-            <option [value]="prest.state">{{ prest.state }}</option>
-            <ng-container *ngFor="let state of states">
-                <option *ngIf="state !== prest.state" [value]="state">{{ state }}</option>
-            </ng-container>
-          </select>
-        </td>
-
+      <tr *ngFor="let item of prestations">
+        <app-ligne-prestation [prestation]="item"></app-ligne-prestation>
       </tr>
     </tbody>
   </table>

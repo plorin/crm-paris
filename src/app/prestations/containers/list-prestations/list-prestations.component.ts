@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Prestation } from '../../../shared/models/prestation';
-import { Observable } from 'rxjs';
 import { PrestationsService } from '../../services/prestations.service';
 import { State } from '../../../shared/enums/state.enum';
 
@@ -11,14 +10,22 @@ import { State } from '../../../shared/enums/state.enum';
 })
 export class ListPrestationsComponent implements OnInit {
   public prestations: Prestation[];
-  public states = Object.values(State);
-
+  public table_headers: string[];
   constructor(
     private prestationService: PrestationsService
   ) { }
 
   ngOnInit() {
     this.prestations = this.prestationService.collection;
+    this.table_headers = [
+      'Type',
+      'Client',
+      'Nb jours',
+      'Tjm HT',
+      'Total HT',
+      'Total TTC',
+      'Action',
+    ];
   }
 
 }
