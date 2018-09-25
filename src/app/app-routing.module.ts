@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 
 const appRoutes: Routes = [
   /*{
@@ -11,13 +11,20 @@ const appRoutes: Routes = [
     redirectTo: '/login',
     pathMatch: 'full'
   },
+  {
+    path: 'prestations',
+    loadChildren: './prestations/prestations.module#PrestationsModule',
+  },
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: false } // <-- debugging purposes only
+      {
+        enableTracing: false, // <-- debugging purposes only
+        preloadingStrategy: PreloadAllModules
+      }
     )
   ]
 })

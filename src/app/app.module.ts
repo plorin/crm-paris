@@ -8,7 +8,6 @@ import { LoginModule } from './login/login.module';
 import { PageNotFoundModule } from './page-not-found/page-not-found.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
-import { PrestationsModule } from './prestations/prestations.module';
 import { Router } from '@angular/router';
 
 @NgModule({
@@ -21,7 +20,6 @@ import { Router } from '@angular/router';
     UiModule,
     LoginModule,
     NgbModule.forRoot(),
-    PrestationsModule,
     PageNotFoundModule, // A laisser en dernier
   ],
   providers: [],
