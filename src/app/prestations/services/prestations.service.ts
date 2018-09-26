@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Prestation } from '../../shared/models/prestation';
 import { fakeprestations } from './fake-prestations';
+import { State } from '../../shared/enums/state.enum';
 
 @Injectable({
   providedIn: 'root' // Plus besoin de créer de dépendances
@@ -34,7 +35,11 @@ export class PrestationsService {
 
   // delete
   delete(prest: Prestation): void {
-    
+
+  }
+
+  public update(prestation: Prestation, state: State) {
+    prestation.state = state;
   }
 
 }

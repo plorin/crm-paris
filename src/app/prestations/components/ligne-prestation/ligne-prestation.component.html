@@ -5,8 +5,8 @@
   <td>{{ prestation.tjmHT | currency:'EUR' }}</td>
   <td>{{ prestation | total:'HT' | currency:'EUR' }}</td>
   <td>{{ prestation | total:'TTC' | currency:'EUR' }}</td>
-  <td>
-    <select>
+  <td [appStateClass]="prestation.state">
+    <select (change)="changeState($event)">
       <option [value]="prestation.state">{{ prestation.state }}</option>
       <ng-container *ngFor="let state of states">
         <option *ngIf="state !== prestation.state" [value]="state">{{ state }}</option>

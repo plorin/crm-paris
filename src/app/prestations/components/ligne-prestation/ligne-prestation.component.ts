@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Prestation } from '../../../shared/models/prestation';
 import { State } from '../../../shared/enums/state.enum';
+import { PrestationsService } from '../../services/prestations.service';
 
 @Component({
   selector: 'app-ligne-prestation, [app-ligne-prestation]',
@@ -20,7 +21,9 @@ export class LignePrestationComponent implements OnInit {
   public states = Object.values(State);
   @Input() prestation: Prestation;
 
-  constructor() {
+  constructor(
+    private prestationService: PrestationsService
+    ) {
     // console.log('constructor', this.prestation);
   }
 
@@ -29,6 +32,12 @@ export class LignePrestationComponent implements OnInit {
     if (!this.prestation) {
       this.prestation = new Prestation();
     }
+  }
+
+  public changeState(event) {
+    const state = event.target.value;
+    console.log('changeState', event, state);
+    this.prestationService.update(this.prestation, state);
   }
 
 }
