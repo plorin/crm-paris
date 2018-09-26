@@ -1,0 +1,16 @@
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th *ngFor="let item of headers" scope="col">{{ item }}</th>
+      </tr>
+    </thead>
+
+      <ng-content></ng-content>
+
+  </table>
+</div>
+<ng-content select=".lienAdd"></ng-content>
+<ng-content select=".premier"></ng-content>
+<ng-content select="p"></ng-content>
+<!--<app-add-row *ngIf="addRow" [addRow]="addRow"></app-add-row>-->

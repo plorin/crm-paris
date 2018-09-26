@@ -1,14 +1,47 @@
+<app-tableau [headers]="listHeaders" [addRow]="row">
+  <!-- <p>ce code va être injecté dans la balise ng-content de app-tableau (transclusion)</p>-->
+  <!--Cas 1 -->
+  <!--<ng-container *ngFor="let item of prestations">
+    <app-ligne-prestation [prestation]="item"></app-ligne-prestation>
+  </ng-container>-->
+  <!-- cas 2 -->
+  <!--<p>un troisième contenu projeté</p>-->
+  <app-ligne-prestation *ngFor="let item of prestations" [prestation]="item"></app-ligne-prestation>
+
+  <app-add-row *ngIf="row" [addRow]="row"></app-add-row>
+
+  <!--<p class="premier">premier contenu projeté</p>-->
+<div class="lienAdd">
+  injecté dans app-tableau
+  <a routerLink="/prestations/add" > <!--routerLinkActive="active"-->
+    <fa-icon [icon]="faPlus"></fa-icon>&nbsp;Ajouter une prestation
+  </a>
+</div>
+</app-tableau>
+
+<!-- {{ 'ancien code :' }}
 <div class="table-responsive">
   <table class="table table-hover">
     <thead class="thead-dark">
       <tr>
-        <th *ngFor="let item of table_headers" scope="col">{{ item }}</th>
+        <th *ngFor="let item of listHeaders" scope="col">{{ item }}</th>
       </tr>
     </thead>
     <tbody>
+      < !--Cas 1 : on a ajouté un displaycontent sur cette balise pour ne pas avoir cette balise -- >
       <tr *ngFor="let item of prestations">
         <app-ligne-prestation [prestation]="item"></app-ligne-prestation>
       </tr>
+      < !--Cas 2 -- >
+      < !--<tr app-ligne-prestation [prestation]="item" *ngFor="let item of prestations"></tr>-- >
+      < !-- Cas 3
+          + tr dans component enfant
+          + displaycontent sur balise app-- >
+      < !--
+        <ng-container *ngFor="let item of prestations">
+          <app-ligne-prestation [prestation]="item"></app-ligne-prestation>
+      </ng-container>-- >
     </tbody>
   </table>
 </div>
+-->

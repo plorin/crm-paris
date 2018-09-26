@@ -3,7 +3,7 @@ import { Prestation } from '../../../shared/models/prestation';
 import { State } from '../../../shared/enums/state.enum';
 
 @Component({
-  selector: 'app-ligne-prestation',
+  selector: 'app-ligne-prestation, [app-ligne-prestation]',
   /* en utilisant la syntaxe suivante
   selector: '[app-ligne-prestation]',
   on utilise dans le html :
@@ -21,10 +21,14 @@ export class LignePrestationComponent implements OnInit {
   @Input() prestation: Prestation;
 
   constructor() {
-    console.log(this.prestation);
+    // console.log('constructor', this.prestation);
   }
 
   ngOnInit() {
+    console.log('ngOnInit', this.prestation);
+    if (!this.prestation) {
+      this.prestation = new Prestation();
+    }
   }
 
 }

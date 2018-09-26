@@ -4,12 +4,16 @@ import { ListPrestationsComponent } from './containers/list-prestations/list-pre
 import { PrestationsRoutingModule } from './prestations-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { LignePrestationComponent } from './components/ligne-prestation/ligne-prestation.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
     PrestationsRoutingModule,
     SharedModule,
+    FontAwesomeModule,
+    RouterModule,
   ],
   declarations: [ListPrestationsComponent, LignePrestationComponent],
   exports: [],
