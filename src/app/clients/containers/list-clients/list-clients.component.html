@@ -1,0 +1,4 @@
+<app-tableau [headers]="listHeaders" [addRow]="row">
+    <app-ligne-client *ngFor="let item of clients" [client]="item"></app-ligne-client>
+    <app-add-row *ngIf="row" [addRow]="row"></app-add-row>
+</app-tableau>

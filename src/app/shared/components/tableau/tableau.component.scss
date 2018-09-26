@@ -4,10 +4,21 @@
   background: $palette-color-three;
 }
 
-.state-annule {
+.state-annule,
+.state-inactif {
   background: $palette-color-two;
 }
 
-.state-confirme {
+.state-confirme,
+.state-actif {
   background: $palette-color-four;
+}
+
+:host-context(app-template-dark) thead {
+  // S'applique au thead du component tableau dans le contexte app-template-dark
+  background: red;
+}
+
+tbody > * {
+  display: contents;
 }

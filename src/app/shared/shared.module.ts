@@ -13,7 +13,15 @@ import { StateClassDirective } from './directives/state-class.directive';
     RouterModule,
     FontAwesomeModule,
   ],
-  declarations: [TotalPipe, TableauComponent, AddRowComponent, StateClassDirective],
-  exports: [TotalPipe, TableauComponent, AddRowComponent, StateClassDirective], // Pour pouvoir l'utiliser à l'extérieur
+  declarations: [TotalPipe,
+    TableauComponent,
+    AddRowComponent,
+    StateClassDirective,
+  ],
+  exports: [TotalPipe,
+    TableauComponent,
+    AddRowComponent,
+    StateClassDirective,
+  ], // Pour pouvoir l'utiliser à l'extérieur
 })
 export class SharedModule { }

@@ -15,6 +15,10 @@ const appRoutes: Routes = [
     path: 'prestations',
     loadChildren: './prestations/prestations.module#PrestationsModule',
   },
+  {
+    path: 'clients',
+    loadChildren: './clients/clients.module#ClientsModule',
+  },
 ];
 
 @NgModule({

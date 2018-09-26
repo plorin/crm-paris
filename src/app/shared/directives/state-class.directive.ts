@@ -1,22 +1,23 @@
 import { Directive, HostBinding, Input, OnChanges } from '@angular/core';
 import { State } from '../enums/state.enum';
+import { StateClient } from '../enums/stateClient.enum';
 
 @Directive({
   selector: '[appStateClass]'
 })
 export class StateClassDirective implements  OnChanges {
   @HostBinding('class') nomClass: string;
-  @Input() appStateClass: State;
+  @Input() appStateClass: State | StateClient;
 
   constructor() {
 
   }
   ngOnChanges(): void {
-    console.log('ngOnChanges', event, this.appStateClass);
+    // console.log('ngOnChanges', event, this.appStateClass);
     this.nomClass = this.formatClass(this.appStateClass);
   }
 
-  private formatClass(state: State): string {
+  private formatClass(state: State | StateClient): string {
 
     /*switch (state) {
       case State.CONFIRME :
