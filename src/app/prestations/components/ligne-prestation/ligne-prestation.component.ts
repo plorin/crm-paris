@@ -37,7 +37,12 @@ export class LignePrestationComponent implements OnInit {
   public changeState(event) {
     const state = event.target.value;
     console.log('changeState', event, state);
-    this.prestationService.update(this.prestation, state);
+    this.prestationService.update(this.prestation, state).then((data) => {
+      this.prestation.state = state; // pour mettre à jour l'ihm
+    });
+    /*this.prestationService.update(this.prestation, state).subscribe((data) => {
+      this.prestation.state = state; // pour mettre à jour l'ihm
+    });*/
   }
 
 }

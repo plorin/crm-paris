@@ -6,8 +6,8 @@
   </ng-container>-->
   <!-- cas 2 -->
   <!--<p>un troisième contenu projeté</p>-->
-  <app-ligne-prestation *ngFor="let item of prestations" [prestation]="item"></app-ligne-prestation>
-
+  <app-ligne-prestation *ngFor="let item of prestations | async" [prestation]="item"></app-ligne-prestation>
+<!--| async se charge du subscribe et unsubscribe-->
   <app-add-row *ngIf="row" [addRow]="row"></app-add-row>
 
   <!--<p class="premier">premier contenu projeté</p>-->

@@ -21,6 +21,10 @@ export class AddPrestationComponent implements OnInit {
   public add(item: Prestation) {
     console.log(item);
     this.prestationService.add(item);
+    /*this.prestationService.add(item).subscribe((data) => {
+      // exploite la réponse du serveur ici
+    }); // subscribe va lancer la requête
+    */
     this.router.navigate(['prestations']);
   }
 

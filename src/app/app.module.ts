@@ -9,9 +9,13 @@ import { PageNotFoundModule } from './page-not-found/page-not-found.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { Router } from '@angular/router';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+import { environment } from '../environments/environment.firebase';
+import { HttpClientModule } from '@angular/common/http';
 
 // the second parameter 'fr' is optional
 registerLocaleData(localeFr, 'fr');
@@ -26,6 +30,9 @@ registerLocaleData(localeFr, 'fr');
     UiModule,
     LoginModule,
     NgbModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+    HttpClientModule,
     PageNotFoundModule, // A laisser en dernier
   ],
   providers: [
