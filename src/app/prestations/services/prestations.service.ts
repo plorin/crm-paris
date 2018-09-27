@@ -9,7 +9,8 @@ import { State } from '../../shared/enums/state.enum';
 export class PrestationsService {
   private _collection: Prestation[];
 
-  constructor() {
+  constructor(
+  ) {
     this._collection = fakeprestations; // il va automatiquement appeler le setter
   }
 
@@ -40,6 +41,10 @@ export class PrestationsService {
 
   public update(prestation: Prestation, state: State) {
     prestation.state = state;
+  }
+
+  public add(item: Prestation) {
+    this.collection.push(item);
   }
 
 }

@@ -1,0 +1,46 @@
+<div class="container">
+    <form novalidate (ngSubmit)="process()" [formGroup]="form">
+      <!-- [formGroup] nécessite d'avoir importé ReactiveFormModule -->
+      <!-- novalidate : ne pas valider automatiquement les number... -->
+      <div class="form-group">
+        <label for="type">Type prestation</label>
+        <input type="text" class="form-control" id="type" formControlName="typePresta">
+        <!-- for et id doivent avoir la même valeur-->
+        <!-- class="form-control" : uniquement pour bootstrap -->
+        <!--<div class="alert alert-danger">
+          Type prestation obligatoire
+        </div>-->
+      </div>
+
+      <div class="form-group">
+        <label for="client">Client</label>
+        <input type="text" class="form-control" id="client" formControlName="client">
+      </div>
+
+      <div class="form-group">
+        <label for="nbjours">Nb jours</label>
+        <input type="number" class="form-control" id="nbjours" formControlName="nbJours">
+      </div>
+
+      <div class="form-group">
+        <label for="tjmHT">Tjm HT</label>
+        <input type="number" class="form-control" id="tjmHT" formControlName="tjmHT">
+      </div>
+
+      <div class="form-group">
+        <label for="tauxTVA">Taux TVA</label>
+        <input type="number" class="form-control" id="tauxTVA" formControlName="tauxTVA">
+      </div>
+
+      <div class="form-group">
+        <label for="state">Action</label>
+        <select id="state" class="form-control" formControlName="state">
+          <option *ngFor="let state of states" [ngValue]="state">{{ state }}</option>
+          <!-- ngValue plutôt que value : permet de garder le type (et non systématiquement un string) -->
+          <!-- utilisation de ngValue => importer FormsModule -->
+        </select>
+      </div>
+
+      <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
