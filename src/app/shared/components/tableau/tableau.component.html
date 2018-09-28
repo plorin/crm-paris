@@ -9,6 +9,7 @@
       <ng-content></ng-content>
     </tbody>
   </table>
+  <div *ngIf="msg$ | async; let msg">{{ msg }}</div>
 </div>
 <ng-content select=".lienAdd"></ng-content>
 <ng-content select=".premier"></ng-content>

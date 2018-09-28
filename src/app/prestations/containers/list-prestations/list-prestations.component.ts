@@ -13,7 +13,7 @@ import { Observable, Subscription } from 'rxjs';
 })
 export class ListPrestationsComponent implements OnInit, OnDestroy {
   // public prestations: Prestation[]; // nous empêche d'utiliser ChangeDetectionStrategy.OnPush
-  public prestations: Observable<Prestation[]>;
+  public prestations$: Observable<Prestation[]>;
   public listHeaders: string[];
   public faPlus = faPlus;
   public row: Row;
@@ -26,7 +26,7 @@ export class ListPrestationsComponent implements OnInit, OnDestroy {
     // this.sub.unsubscribe(); // sinon on garde l'ancien et on ajoute un autre subscribe
   }
   ngOnInit() {
-    this.prestations = this.prestationService.collection;
+    this.prestations$ = this.prestationService.collection$;
     /*this.sub = this.prestationService.collection.subscribe((data) => {
       this.prestations = data;
     });*/
@@ -38,6 +38,7 @@ export class ListPrestationsComponent implements OnInit, OnDestroy {
       'Total HT',
       'Total TTC',
       'Action',
+      'Delete',
     ];
     this.row = {
       route: 'add',

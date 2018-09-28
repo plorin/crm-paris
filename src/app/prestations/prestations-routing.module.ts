@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListPrestationsComponent } from './containers/list-prestations/list-prestations.component';
 import { AddPrestationComponent } from './containers/add-prestation/add-prestation.component';
 import { EditPrestationComponent } from './containers/edit-prestation/edit-prestation.component';
+import { ResolverService } from './services/resolver.service';
 
 const appRoutes: Routes = [
   { path: '', component: ListPrestationsComponent },
@@ -10,6 +11,9 @@ const appRoutes: Routes = [
   {
     path: 'edit/:id',
     component: EditPrestationComponent,
+    resolve: {
+      prestation: ResolverService
+    }
     // data: { id:  }
   },
 ];

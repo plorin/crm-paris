@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { State } from '../../../shared/enums/state.enum';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Prestation } from '../../../shared/models/prestation';
@@ -13,9 +13,17 @@ export class FormReactiveComponent implements OnInit {
   public form: FormGroup;
   private init: Prestation = new Prestation();
   @Output() nPresta: EventEmitter<Prestation> = new EventEmitter();
+  @Input() prestation: Prestation;
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
+    if (this.prestation) {
+      console.log('prestation initialisée', this.prestation);
+      this.init = this.prestation;
+    } else {
+      console.log('prestation non reçue');
+
+    }
     this.createForm();
   }
 
@@ -42,6 +50,9 @@ export class FormReactiveComponent implements OnInit {
       state: [
         this.init.state
       ],
+      id: [
+        this.init.id
+      ]
     });
   }
   public process(): void {

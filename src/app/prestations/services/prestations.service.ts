@@ -6,7 +6,7 @@ import {
   AngularFirestore,
   AngularFirestoreCollection
 } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
@@ -16,14 +16,14 @@ import { HttpClient } from '@angular/common/http';
 export class PrestationsService {
   private itemsCollection: AngularFirestoreCollection<Prestation>;
   // items: Observable<Prestation[]>;
-  private _collection: Observable<Prestation[]>;
-
+  private _collection$: Observable<Prestation[]>; // $ convention de nommage pour les Observable
+  public msg$ = new Subject();
   constructor(
     private afs: AngularFirestore,
     private http: HttpClient
   ) {
     this.itemsCollection = afs.collection<Prestation>('prestations');
-    this._collection = this.itemsCollection
+    this._collection$ = this.itemsCollection
       .valueChanges()
       .pipe(map(data => data.map(presta => new Prestation(presta))));
     // ou
@@ -43,23 +43,26 @@ export class PrestationsService {
   }
 
   // get collection
-  get collection(): Observable<Prestation[]> {
-    return this._collection;
+  get collection$(): Observable<Prestation[]> {
+    return this._collection$;
   }
 
   // set collection
-  set collection(col: Observable<Prestation[]>) {
-    this._collection = col;
+  set collection$(col: Observable<Prestation[]>) {
+    this._collection$ = col;
   }
 
   // get item in collection by id
-  getItem(id: string): Prestation {
+  getItem(id: string): Observable<Prestation> {
     /*this._collection.find(
       prest => prest.id === id
     );*/
     return null;
   }
-
+  getPrestation(id: string): Observable<Prestation> {
+    return this.itemsCollection.doc<Prestation>(id).valueChanges();
+    // return this.http.get(`urlaspi/prestations/${id}`);
+  }
   // add presta
   add(item: Prestation): any {
     const id = this.afs.createId(); // ajoute un doc en BDD
@@ -74,10 +77,12 @@ export class PrestationsService {
   }
 
   update(item: Prestation, option?: State): Promise<any> {
+    console.log('update', item);
     const presta = { ...item }; // const presta = item ne va pas car c'est une copie par référence
     if (option) {
       presta.state = option;
     }
+    console.log('update presta', presta);
     return this.itemsCollection
       .doc(item.id)
       .update(presta)

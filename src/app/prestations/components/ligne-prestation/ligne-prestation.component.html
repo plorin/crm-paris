@@ -1,4 +1,4 @@
-<tr>
+<tr (click)="edit()">
   <th>{{ prestation.typePresta }}</th>
   <td>{{ prestation.client }}</td>
   <td>{{ prestation.nbJours }}</td>
@@ -6,11 +6,16 @@
   <td>{{ prestation | total:'HT' | currency:'EUR' }}</td>
   <td>{{ prestation | total:'TTC' | currency:'EUR' }}</td>
   <td [appStateClass]="prestation.state">
-    <select (change)="changeState($event)">
+    <select (click)="$event.stopPropagation()" (change)="changeState($event)">
       <option [value]="prestation.state">{{ prestation.state }}</option>
       <ng-container *ngFor="let state of states">
         <option *ngIf="state !== prestation.state" [value]="state">{{ state }}</option>
       </ng-container>
     </select>
+  </td>
+  <td>
+    <fa-icon [icon]="faTrash"
+      (click)="$event.stopPropagation();
+      deleteMe()"></fa-icon>
   </td>
 </tr>

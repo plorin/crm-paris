@@ -11,7 +11,18 @@
     </div>
 
     <div>
+      <span *ngIf="(log$ | async) === 'login'; else other_content">
+        {{ user }}
+        <button (click)="logout()">logout</button>
+      </span>
+      <ng-template #other_content>
+          <button (click)="login()">Login</button>
+      </ng-template>
       <span>
+          <a routerLink="/login/" *ngIf="loginServiceService.login$.value==='logout'"> <!--routerLinkActive="active"-->
+            <fa-icon [icon]="faUser" ></fa-icon>
+            Connexion
+          </a>
           <fa-icon [icon]="faUser"></fa-icon>
       </span>
     </div>
